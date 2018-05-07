@@ -15,7 +15,7 @@
 
 ***
 
-<sub>Check out my [blog](http://kamranahmed.info) and say "hi" on [Twitter](https://twitter.com/kamranahmedse).</sub>
+<sub>저의[블로그](http://kamranahmed.info)를 방문하시고 저의 [Twitter](https://twitter.com/kamranahmedse)에 인사말을 남겨주세요.</sub>
 
 🚀 Introduction
 =================
