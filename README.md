@@ -3,15 +3,15 @@
 ***
 
 <p align="center">
-🎉 디자인_패턴에 대한 세상 심플한 설명! 🎉
+🎉 디자인_패턴에 대한 세상 심플한 설명이 여기 있습니다! 🎉
 </p>
 <p align="center">
-디자인 패턴은 뭔가 아리쏭한 주제에요. 아주 <i>간단한<\i> 설명을 통해 여러분들이 오래 기억할 수 있도록 노력해보았습니다!
+디자인 패턴은 뭔가 아리쏭한 주제에요. 아주 <i>간단한</i> 설명을 통해 여러분들이 오래 기억할 수 있도록 노력해보았습니다!
 </p>
 
 ***
 
-<p align="center"><b>👋 You might be interested in ES Guy – Weekly booklet on Full-Stack Development </b><br> <a href="http://esguy.com">Read the details and Subscribe here</a></p>
+<p align="center"><b>👋 당신이 ES Guy에 관심이 있다면 – Full-Stack Development에 대한 Weekly 매거진 </b><br> <a href="http://esguy.com">여기에서 내용을 확인하고 구독하세요.</a></p>
 
 ***
 
