@@ -15,18 +15,19 @@
 
 ***
 
-<sub>저의[블로그](http://kamranahmed.info)를 방문하시고 저의 [Twitter](https://twitter.com/kamranahmedse)에 인사말을 남겨주세요.</sub>
+<sub>저의 [블로그](http://kamranahmed.info)를 방문하시고 저의 [Twitter](https://twitter.com/kamranahmedse)에 인사말을 남겨주세요.</sub>
 
 🚀 Introduction
 =================
 
 디자인 패턴은 계속해서 발생하는 문제에 대한 해결책입니다.  그리고 **특정한 문제를 해결하는 방법에 대한 지침이에요.** 디자인 패턴은 앱에 import하거나 include해서 마법처럼 뭔가 해결해주는 클래스나 패키지, 라이브러리가 아닙니다. 그보다 특정한 상황에서 알맞은 해결책을 제시해주는 가이드라인이에요.  
 
-> Design patterns are solutions to recurring problems; guidelines on how to tackle certain problems
+> 디자인 패턴은 계속해서 발생하는 문제에 대한 해결책이다. 그리고 특정한 문제를 해결하기 위한 가이드라인이다.
 
-Wikipedia describes them as
+위키피디아에서는 디자인 패턴을 다음과 같이 묘사해요.
 
-> In software engineering, a software design pattern is a general reusable solution to a commonly occurring problem within a given context in software design. It is not a finished design that can be transformed directly into source or machine code. It is a description or template for how to solve a problem that can be used in many different situations.
+> 소프트웨어 공학에서, 디자인 패턴은 소프트웨어 설계에서 자주 발생하는 문제에 대한 일반적인 재사용가능한 해결책이다. 디자인 패턴은 즉시 소스코드나 기계어로 바뀔수 있는 완성된 설계가 아니다. 디자인 패턴은 여러 다른 상황에서 적용할 수 있는 설명이나 템플릿이다.
+
 
 ⚠️ Be Careful
 -----------------
