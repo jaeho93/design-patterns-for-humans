@@ -20,7 +20,7 @@
 🚀 Introduction
 =================
 
-Design patterns are solutions to recurring problems; **guidelines on how to tackle certain problems**. They are not classes, packages or libraries that you can plug into your application and wait for the magic to happen. These are, rather, guidelines on how to tackle certain problems in certain situations.
+디자인 패턴은 계속해서 발생하는 문제에 대한 해결책입니다.  그리고 **특정한 문제를 해결하는 방법에 대한 지침이에요.** 디자인 패턴은 앱에 import하거나 include해서 마법처럼 뭔가 해결해주는 클래스나 패키지, 라이브러리가 아닙니다. 그보다 특정한 상황에서 알맞은 해결책을 제시해주는 가이드라인이에요.  
 
 > Design patterns are solutions to recurring problems; guidelines on how to tackle certain problems
 
