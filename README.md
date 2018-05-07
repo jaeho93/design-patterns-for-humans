@@ -47,11 +47,11 @@ Types of Design Patterns
 Creational Design Patterns
 ==========================
 
-In plain words
-> Creational patterns are focused towards how to instantiate an object or group of related objects.
+간단히 말해서
+> Creational patterns 은 객체 혹은 관련 있는 객체의 그룹을 인스턴스화 하는 방법에 대해 초점이 맞추어져 있습니다.
 
-Wikipedia says
-> In software engineering, creational design patterns are design patterns that deal with object creation mechanisms, trying to create objects in a manner suitable to the situation. The basic form of object creation could result in design problems or added complexity to the design. Creational design patterns solve this problem by somehow controlling this object creation.
+위키피디아에서는 다음과 같이 말해요.
+> 소프트웨어 공학에서, creational design patterns는 상황에 알맞은 방법으로 객체를 생성하기 위한 객체 생성 메커니즘을 다루는 디자인 패턴이다. 가장 간단한 방식으로 객체를 생성하는 것은 설계에 대한 문제와 복잡성을 만들 수 있다. creational design patterns는 객체의 생성 방법을 손보는 것으로 이런 문제를 해결 한다.
 
  * [Simple Factory](#-simple-factory)
  * [Factory Method](#-factory-method)
