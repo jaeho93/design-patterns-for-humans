@@ -3,10 +3,10 @@
 ***
 
 <p align="center">
-🎉 Ultra-simplified explanation to design patterns! 🎉
+🎉 디자인_패턴에 대한 세상 심플한 설명! 🎉
 </p>
 <p align="center">
-A topic that can easily make anyone's mind wobble. Here I try to make them stick in to your mind (and maybe mine) by explaining them in the <i>simplest</i> way possible.
+디자인 패턴은 뭔가 아리쏭한 주제에요. 아주 <i>간단한<\i> 설명을 통해 여러분들이 오래 기억할 수 있도록 노력해보았습니다!
 </p>
 
 ***
