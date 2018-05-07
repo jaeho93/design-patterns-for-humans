@@ -29,13 +29,13 @@
 > 소프트웨어 공학에서, 디자인 패턴은 소프트웨어 설계에서 자주 발생하는 문제에 대한 일반적인 재사용가능한 해결책이다. 디자인 패턴은 즉시 소스코드나 기계어로 바뀔수 있는 완성된 설계가 아니다. 디자인 패턴은 여러 다른 상황에서 적용할 수 있는 설명이나 템플릿이다.
 
 
-⚠️ Be Careful
+⚠️ 주의하세요!
 -----------------
-- Design patterns are not a silver bullet to all your problems.
-- Do not try to force them; bad things are supposed to happen, if done so. Keep in mind that design patterns are solutions **to** problems, not solutions **finding** problems; so don't overthink.
-- If used in a correct place in a correct manner, they can prove to be a savior; or else they can result in a horrible mess of a code.
+- 디자인 패턴은 당신의 모든 문제에 대한 만능열쇠가 아니에요.디자인 패턴을 강제로 집어넣지 마세요. 그러면 나쁜일들이 벌어질거에요. 
+- 디자인 패턴은 이미 **발생한 문제**에 대한 해결책이지 **문제를 찾는** 해결책이 아니에요. 지나치게 고려하지 마세요.
+- 제대로 된 방법으로 적절한 곳에 사용한다면 디자인 패턴은 여러분에게 구원자가 될 수 있어요. 하지만, 그렇지 않다면, 오히려 여러분의 코드를 망칠 수 있습니다.
 
-> Also note that the code samples below are in PHP-7, however this shouldn't stop you because the concepts are same anyways. Plus the **support for other languages is underway**.
+> 아래의 코드 샘플은 자바입니다. 하지만 어떤 언어이든 개념은 같기 때문에 멈추지 마세요. 또한 **다른 언어에 대한 지원도 진행 중 입니다.**
 
 Types of Design Patterns
 -----------------
