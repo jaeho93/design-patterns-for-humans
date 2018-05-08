@@ -62,67 +62,65 @@ Creational Design Patterns
 
 🏠 Simple Factory
 --------------
-Real world example
-> Consider, you are building a house and you need doors. It would be a mess if every time you need a door, you put on your carpenter clothes and start making a door in your house. Instead you get it made from a factory.
+우리가 사는 현실에 비유해보았어요.
+> 당신은 집을 짓고 있고, 문이 필요해요. 문이 필요할때마다, 집 안에서 목수가 되어 문을 만든다면, 집이 난장판이 될거에요. 대신에 당신은 공장에서 문을 가져올 수 있어요.
 
-In plain words
-> Simple factory simply generates an instance for client without exposing any instantiation logic to the client
+간단히 말해서
+> simple factory 패턴은 사용자에게 인스턴스화의 과정을 노출하지 않고, 객체가 필요한 사용자에게 객체를 생성해줍니다. 
 
-Wikipedia says
-> In object-oriented programming (OOP), a factory is an object for creating other objects – formally a factory is a function or method that returns objects of a varying prototype or class from some method call, which is assumed to be "new".
+위키피디아에서는 다음과 같이 말해요.
+> 객체 지향 프로그래밍에서, factory는 다른 객체를 만들기 위한 객체이다. 형식상 factory는 "new"에 의해 호출되는 function 혹은 method이다. factory는 다양한 prototype 또는 object를 리턴한다.
 
 **Programmatic Example**
 
-First of all we have a door interface and the implementation
-```php
-interface Door
-{
-    public function getWidth(): float;
-    public function getHeight(): float;
+먼저 인터페이스를 구현합니다.
+```java
+interface Door {
+	public float getWidth();
+
+	public float getHeight();
 }
 
-class WoodenDoor implements Door
-{
-    protected $width;
-    protected $height;
+class WoodenDoor implements Door {
+	protected float width;
+	protected float height;
 
-    public function __construct(float $width, float $height)
-    {
-        $this->width = $width;
-        $this->height = $height;
-    }
+	public WoodenDoor(float width, float height) {
+		this.width = width;
+		this.height = height;
+	}
 
-    public function getWidth(): float
-    {
-        return $this->width;
-    }
+	public float getWidth() {
+		return this.width;
+	}
 
-    public function getHeight(): float
-    {
-        return $this->height;
-    }
+	public float getHeight() {
+		return this.height;
+	}
 }
 ```
-Then we have our door factory that makes the door and returns it
-```php
-class DoorFactory
-{
-    public static function makeDoor($width, $height): Door
-    {
-        return new WoodenDoor($width, $height);
-    }
+door 객체를 생성하고 그 객체를 리턴하는 factory를 만듭니다.
+```java
+class DoorFactory {
+	public static Door makeDoor(float width, float height) {
+		return new WoodenDoor(width, height);
+	}
 }
 ```
-And then it can be used as
-```php
-$door = DoorFactory::makeDoor(100, 200);
-echo 'Width: ' . $door->getWidth();
-echo 'Height: ' . $door->getHeight();
+이제 다음과 같이 사용할 수 있어요.
+```java
+public class simple_factory {
+	public static void main(String[] args) {
+		Door door = DoorFactory.makeDoor(100, 200);
+		System.out.println("width: " + door.getWidth());
+		System.out.println("height: " + door.getHeight());
+	}
+}
 ```
 
-**When to Use?**
+**언제 사용할까요??**
 
-When creating an object is not just a few assignments and involves some logic, it makes sense to put it in a dedicated factory instead of repeating the same code everywhere.
+객체를 만드는 것이 간단한 작업이 아니고 어떤 로직을 포함할 때는,  같은 코드를 사용할 때마다 반복하는 것이 아니라 전용 factory에서 하는 것이 좋습니다. 
 
 🏭 Factory Method
 --------------
