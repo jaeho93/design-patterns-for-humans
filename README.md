@@ -125,90 +125,83 @@ public class simple_factory {
 🏭 Factory Method
 --------------
 
-Real world example
-> Consider the case of a hiring manager. It is impossible for one person to interview for each of the positions. Based on the job opening, she has to decide and delegate the interview steps to different people.
+우리가 사는 현실에 비유해 보았어요.
+> 매니저를 고용하는 경우를 생각해 보아요.  각 직책에 대해 한 사람이 모두 면접을 하는 것은 불가능해요. 구인하는 직책을 기준으로, 면접의 과정을 결정하고 다른 이들에게 면접관 역할을 위임해야 해요.
 
-In plain words
-> It provides a way to delegate the instantiation logic to child classes.
+간단히 말해서,
+> Factory method는 자식 클래스의 인스턴스를 만드는 과정을 위임하는 방법을 제공해요.
 
-Wikipedia says
-> In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method—either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
+위키피디아에서는 다음과 같이 말해요.
+> 객체 지향 프로그래밍에서, Factory method는 생성할 객체의 정확한 클래스를 지정하지 않고, 객체를 생성하는 문제를 처리하는 creational pattern이다. 객체는 직접 생성자를 호출해서 생성하지 않고,  Factory method를 호출하여 만든다. 이는 인터페이스에 정의되고 자식 클래스로 구현되거나, 기본 클래스에 구현되고, 일부는 파생된 클래스에 재정의 된다.
 
  **Programmatic Example**
 
-Taking our hiring manager example above. First of all we have an interviewer interface and some implementations for it
+위의 매니저를 고용하는 문제를 다시 생각해봐요. 먼저 면접관 인터페이스를 만들고 일부를 구현해요.
 
-```php
-interface Interviewer
-{
-    public function askQuestions();
+```java
+interface Interviewer {
+	public void askQuestions();
 }
 
-class Developer implements Interviewer
-{
-    public function askQuestions()
-    {
-        echo 'Asking about design patterns!';
-    }
+class Developer implements Interviewer {
+	public void askQuestions() {
+		System.out.println("Asking about design patterns!");
+	}
 }
 
-class CommunityExecutive implements Interviewer
-{
-    public function askQuestions()
-    {
-        echo 'Asking about community building';
-    }
+class CommunityExecutive implements Interviewer {
+	public void askQuestions() {
+		System.out.println("Asking about community building!");
+	}
 }
 ```
 
-Now let us create our `HiringManager`
+그리고 HiringManager 클래스를 만들어요.
 
-```php
-abstract class HiringManager
-{
+```java
+abstract class HiringManager {
 
-    // Factory method
-    abstract protected function makeInterviewer(): Interviewer;
+	// Factory method
+	abstract protected Interviewer makeInterviewer();
 
-    public function takeInterview()
-    {
-        $interviewer = $this->makeInterviewer();
-        $interviewer->askQuestions();
-    }
+	public void takeInterview() {
+		Interviewer interviewer = this.makeInterviewer();
+		interviewer.askQuestions();
+	}
 }
 
 ```
-Now any child can extend it and provide the required interviewer
-```php
-class DevelopmentManager extends HiringManager
-{
-    protected function makeInterviewer(): Interviewer
-    {
-        return new Developer();
-    }
+이제 어떤 자식 클래스도 HiringManager를 확장 할 수 있고 필요한 면접관을 배출할 수 있어요.
+```java
+class DevelopmentManager extends HiringManager {
+	protected Interviewer makeInterviewer() {
+		return new Developer();
+	}
 }
 
-class MarketingManager extends HiringManager
-{
-    protected function makeInterviewer(): Interviewer
-    {
-        return new CommunityExecutive();
-    }
+class MarketingManager extends HiringManager {
+	protected Interviewer makeInterviewer() {
+		return new CommunityExecutive();
+	}
 }
 ```
-and then it can be used as
+이제 다음과 같이 사용할 수 있어요.
 
-```php
-$devManager = new DevelopmentManager();
-$devManager->takeInterview(); // Output: Asking about design patterns
+```java
+public class FactoryMethod {
+	public static void main(String[] args) {
+		DevelopmentManager devManager = new DevelopmentManager();
+		devManager.takeInterview(); // 결과 : 디자인 패턴에 대해 질문한다.
 
-$marketingManager = new MarketingManager();
-$marketingManager->takeInterview(); // Output: Asking about community building.
+		MarketingManager marketingManager = new MarketingManager();
+		marketingManager.takeInterview(); // 결과 : 커뮤니티 빌딩에 대해 질문한다.
+	}
+}
 ```
 
-**When to use?**
+**언제 사용할까요?**
 
-Useful when there is some generic processing in a class but the required sub-class is dynamically decided at runtime. Or putting it in other words, when the client doesn't know what exact sub-class it might need.
+클래스에서 일반적인 처리과정이 있지만 필수적으로 요구되는 하위 클래스가 런타임에 결정될 때 유용해요. 즉, 사용자가 어떤 하위 클래스가 필요할지 모르는 경우에 사용할 수 있습니다.
 
 🔨 Abstract Factory
 ----------------
