@@ -206,127 +206,121 @@ public class FactoryMethod {
 🔨 Abstract Factory
 ----------------
 
-Real world example
-> Extending our door example from Simple Factory. Based on your needs you might get a wooden door from a wooden door shop, iron door from an iron shop or a PVC door from the relevant shop. Plus you might need a guy with different kind of specialities to fit the door, for example a carpenter for wooden door, welder for iron door etc. As you can see there is a dependency between the doors now, wooden door needs carpenter, iron door needs a welder etc.
+우리가 사는 현실에 비유해 보았어요.
+> Simple Factory 의 문에 관한 예시를 확장해 볼게요. 당신의 기호에 따라서 목재 가구점에서 나무 문을 사오거나, 철재 가구점에서 철재  문을 사올 수 있고, 관련 가구점에서  PVC 재질의 문을 살 수 있어요. 또한 문의 완벽한 설치를 위해서, 나무 문에는 목수, 철재 문에는 용접공 등 각각 맞는 전문가가 필요할 거에요. 보시다시피, 문 사이에는 나무 문은 목수가 필요하고, 철재 문은 용접공이 필요하다는, 의존성이 있어요.
 
-In plain words
-> A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.
 
-Wikipedia says
-> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
+간단히 말해서,
+> 하나의 factory의 factory 입니다. 이 factory는 구체적인 클래스를 지정하기 않고 각각 개별적이지만 관련되어있고 의존적인 factory들을 그룹화합니다.
+
+위키피디아에서는 다음과 같이 말해요.
+> abstract factory pattern 은 공통 주제를 가진 개별의 factory 그룹을, 구체적인 클래스를 지정하지 않고, 캡슐화하는 방법이다.
 
 **Programmatic Example**
 
-Translating the door example above. First of all we have our `Door` interface and some implementation for it
+문에 관한 예제를 바꿉니다. 먼저 Door 인터페이스가 있고 이를 구현하는 두가지 Door가 있습니다.
 
-```php
-interface Door
-{
-    public function getDescription();
+```java
+interface Door {
+	public void getDescription();
 }
 
-class WoodenDoor implements Door
-{
-    public function getDescription()
-    {
-        echo 'I am a wooden door';
-    }
+class WoodenDoor implements Door {
+	public void getDescription() {
+		System.out.println("I am a wooden door.");
+	}
 }
 
-class IronDoor implements Door
-{
-    public function getDescription()
-    {
-        echo 'I am an iron door';
-    }
+class IronDoor implements Door {
+	public void getDescription() {
+		System.out.println("I am an iron door.");
+	}
 }
 ```
-Then we have some fitting experts for each door type
+그리고 각각 문의 종류에 맞는 전문가를 데려옵니다.
 
-```php
-interface DoorFittingExpert
-{
-    public function getDescription();
+```java
+interface DoorFittingExpert {
+	public void getDescription();
 }
 
-class Welder implements DoorFittingExpert
-{
-    public function getDescription()
-    {
-        echo 'I can only fit iron doors';
-    }
+class Welder implements DoorFittingExpert {
+	public void getDescription() {
+		System.out.println("I can only fit iron doors.");
+	}
 }
 
-class Carpenter implements DoorFittingExpert
-{
-    public function getDescription()
-    {
-        echo 'I can only fit wooden doors';
-    }
+class Carpenter implements DoorFittingExpert {
+	@Override
+	public void getDescription() {
+		System.out.println("I can only fit wooden doors.");
+	}
 }
 ```
 
-Now we have our abstract factory that would let us make family of related objects i.e. wooden door factory would create a wooden door and wooden door fitting expert and iron door factory would create an iron door and iron door fitting expert
-```php
-interface DoorFactory
-{
-    public function makeDoor(): Door;
-    public function makeFittingExpert(): DoorFittingExpert;
+이제,  관련된 객체들을 그룹화할 수 있게 해주는 abstract factor를 만듭니다. 예를 들어, wooden door factory는 wooden door와 wooden door fitting expert를 만듭니다.
+```java
+interface DoorFactory {
+	public Door makeDoor();
+	public DoorFittingExpert makeFittingExpert();
 }
 
-// Wooden factory to return carpenter and wooden door
-class WoodenDoorFactory implements DoorFactory
-{
-    public function makeDoor(): Door
-    {
-        return new WoodenDoor();
-    }
-
-    public function makeFittingExpert(): DoorFittingExpert
-    {
-        return new Carpenter();
-    }
+// WoodenDoorFactory는 carpenter 와 wooden door를 만듭니다.
+class WoodenDoorFactory implements DoorFactory {
+	
+	@Override
+	public Door makeDoor() {
+		return new WoodenDoor();
+	}
+	
+	@Override
+	public DoorFittingExpert makeFittingExpert() {
+		return new Carpenter();
+	}
 }
 
-// Iron door factory to get iron door and the relevant fitting expert
-class IronDoorFactory implements DoorFactory
-{
-    public function makeDoor(): Door
-    {
-        return new IronDoor();
-    }
-
-    public function makeFittingExpert(): DoorFittingExpert
-    {
-        return new Welder();
-    }
+//IronDoorFactory는 iron door 와 welder를 만듭니다.
+class IronDoorFactory implements DoorFactory {
+	
+	@Override
+	public Door makeDoor() {
+		return new IronDoor();
+	}
+	
+	@Override
+	public DoorFittingExpert makeFittingExpert() {
+		return new Welder();
+	}
 }
 ```
-And then it can be used as
-```php
-$woodenFactory = new WoodenDoorFactory();
+이제 다음과 같이 사용할 수 있어요.
+```java
+public class AbstractFactory {
+	public static void main(String[] args) {
+		DoorFactory woodenDoorFactory = new WoodenDoorFactory();
 
-$door = $woodenFactory->makeDoor();
-$expert = $woodenFactory->makeFittingExpert();
+		Door door = woodenDoorFactory.makeDoor();
+		DoorFittingExpert expert = woodenDoorFactory.makeFittingExpert();
 
-$door->getDescription();  // Output: I am a wooden door
-$expert->getDescription(); // Output: I can only fit wooden doors
+		door.getDescription();		// Output: I am a wooden door
+		expert.getDescription();	// Output: I can only fit wooden doors
 
-// Same for Iron Factory
-$ironFactory = new IronDoorFactory();
+		DoorFactory ironDoorFactory = new IronDoorFactory();
 
-$door = $ironFactory->makeDoor();
-$expert = $ironFactory->makeFittingExpert();
+		door = ironDoorFactory.makeDoor();				// Output: I am an iron door
+		expert = ironDoorFactory.makeFittingExpert();			// Output: I can only fit iron doors
 
-$door->getDescription();  // Output: I am an iron door
-$expert->getDescription(); // Output: I can only fit iron doors
+		door.getDescription();
+		door.getDescription();
+	}
+}
 ```
 
-As you can see the wooden door factory has encapsulated the `carpenter` and the `wooden door` also iron door factory has encapsulated the `iron door` and `welder`. And thus it had helped us make sure that for each of the created door, we do not get a wrong fitting expert.   
+보다시피, WoodenDoorFactory는 carpenter와 wooden door는 캡슐화하고, IronDoorFactory는 iron door와 welder를 캡슐화 합니다. 이 방법은 잘못된 expert를 찾지 않고, 각각의 door을 만드는 것을 확실하게 해줍니다.
 
-**When to use?**
+**언제 사용할까요?**
 
-When there are interrelated dependencies with not-that-simple creation logic involved
+그리 간단하지 않는 생성 과정이 있고, 상호 의존 관계가 있는 객체들이 있을때 사용해요.
 
 👷 Builder
 --------------------------------------------
