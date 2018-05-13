@@ -324,110 +324,110 @@ public class AbstractFactory {
 
 👷 Builder
 --------------------------------------------
-Real world example
-> Imagine you are at Hardee's and you order a specific deal, lets say, "Big Hardee" and they hand it over to you without *any questions*; this is the example of simple factory. But there are cases when the creation logic might involve more steps. For example you want a customized Subway deal, you have several options in how your burger is made e.g what bread do you want? what types of sauces would you like? What cheese would you want? etc. In such cases builder pattern comes to the rescue.
+우리가 사는 현실에 비유해 보았어요.
+> 당신이 버거킹에 가서 특정한 햄버거를 하나 주문한다고 상상해볼게요, 당신은 "와퍼 세트 주세요." 라고 점원에게 말하고 그는 묻지않고 와퍼를 넘겨주네요. 이것이 Simple factory의 예제에요. 하.지.만 객체를 생성하는 로직은 더 많은 단계를 가질 수 있어요. 예를 들어, 서브웨이에서 나만의 샌드위치를 만들어 먹으려해요. 어떤 빵을 먹을지, 어떤 소스를 선택할지, 치즈를 추가할지 각자 다른 선택이 가능해요. 이런 상황을 Builder pattern이 해결해 줄 수 있어요.
 
-In plain words
-> Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
+간단히 말해서,
+> 생성자의 오남용 없이, 다양한 특성을 가지는 객체를 만들 수 있어요. 다양한 특징의 객체가 있을때 유용해요. 또는 객체를 생성하는데 여러 단계가 있을때 사용합니다.
 
-Wikipedia says
-> The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor anti-pattern.
+위키피디아에서는 다음과 같이 말해요.
+> The Builder pattern 은 telescoping constructor anti-pattern 에 대한 해결책을 찾기 위한 creation software design pattern  입니다.
 
-Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point or the other we have all seen a constructor like below:
+telescoping constructor anti-pattern 에 대해 조금 설명해 볼께요. 여러분은 언젠가 다음과 같은 생성자를 본적이 있어요. 
 
-```php
-public function __construct($size, $cheese = true, $pepperoni = true, $tomato = false, $lettuce = true)
-{
+```java
+public class Pizza {
+	int size;
+	boolean cheese;
+	boolean pepperoni;
+	boolean tomato;
+	boolean lettuce;
+	
+	public Pizza(int size, boolean cheese, boolean pepperoni, boolean tomato, boolean lettuce) {
+		this.size = size;
+		this.cheese = cheese;
+		this.pepperoni = pepperoni;
+		this.tomato = tomato;
+		this.lettuce = lettuce;
+	}
 }
 ```
 
-As you can see; the number of constructor parameters can quickly get out of hand and it might become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in future. This is called telescoping constructor anti-pattern.
+보이는 것 처럼, 생성자의 매개 변수의 수가 많으면 쉽게 이해하는 것이 불가능 하고 통제불능 상태가 되기 쉬어요. 또한 미래에 옵션을 추가하고 싶으면, 매개 변수의 리스트가 더 길어지게 됩니다. 이러한 문제를 telescoping constructor anti-pattern 라고 합니다.
 
 **Programmatic Example**
 
-The sane alternative is to use the builder pattern. First of all we have our burger that we want to make
+이에 대한 올바른 대안은  The Builder pattern 입니다. 먼저 우리가 만들기 원하는 Burger를 준비해요.
 
-```php
-class Burger
-{
-    protected $size;
-
-    protected $cheese = false;
-    protected $pepperoni = false;
-    protected $lettuce = false;
-    protected $tomato = false;
-
-    public function __construct(BurgerBuilder $builder)
-    {
-        $this->size = $builder->size;
-        $this->cheese = $builder->cheese;
-        $this->pepperoni = $builder->pepperoni;
-        $this->lettuce = $builder->lettuce;
-        $this->tomato = $builder->tomato;
-    }
+```jav
+class Burger {
+	protected int size;
+	protected boolean cheese = false;
+	protected boolean pepperoni = false;
+	protected boolean lettuce = false;
+	protected boolean tomato = false;
+	
+	public Burger(BurgerBuilder builder) {
+		this.size = builder.size;
+		this.cheese = builder.cheese;
+		this.pepperoni = builder.pepperoni;
+		this.lettuce = builder.lettuce;
+		this. tomato = builder.tomato;
+	}
 }
 ```
 
-And then we have the builder
+그리고 빌더가 있어요.
 
-```php
-class BurgerBuilder
-{
-    public $size;
-
-    public $cheese = false;
-    public $pepperoni = false;
-    public $lettuce = false;
-    public $tomato = false;
-
-    public function __construct(int $size)
-    {
-        $this->size = $size;
-    }
-
-    public function addPepperoni()
-    {
-        $this->pepperoni = true;
-        return $this;
-    }
-
-    public function addLettuce()
-    {
-        $this->lettuce = true;
-        return $this;
-    }
-
-    public function addCheese()
-    {
-        $this->cheese = true;
-        return $this;
-    }
-
-    public function addTomato()
-    {
-        $this->tomato = true;
-        return $this;
-    }
-
-    public function build(): Burger
-    {
-        return new Burger($this);
-    }
+```java
+class BurgerBuilder {
+	public int size;
+	public boolean cheese = false;
+	public boolean pepperoni = false;
+	public boolean lettuce = false;
+	public boolean tomato = false;
+	
+	public BurgerBuilder(int size) {
+		this.size = size;
+	}
+	
+	public BurgerBuilder addPepperoni() {
+		this.pepperoni = true;
+		return this;
+	}
+	
+	public BurgerBuilder addLettuce() {
+		this.lettuce = true;
+		return this;
+	}
+	
+	public BurgerBuilder addCheese() {
+		this.cheese = true;
+		return this;
+	}
+	
+	public BurgerBuilder addTomato() {
+		this.tomato = true;
+		return this;
+	}
+	
+	public Burger build() {
+		return new Burger(this);
+	}
 }
 ```
-And then it can be used as:
+이제 다음과 같이 사용할 수 있어요.
 
-```php
-$burger = (new BurgerBuilder(14))
-                    ->addPepperoni()
-                    ->addLettuce()
-                    ->addTomato()
-                    ->build();
+```java
+public class Builder {
+	
+	Burger burger = (new BurgerBuilder(14)).addPepperoni().addLettuce().addTomato().addCheese().build();
+}
 ```
 
-**When to use?**
+**언제 사용할까요?**
 
-When there could be several flavors of an object and to avoid the constructor telescoping. The key difference from the factory pattern is that; factory pattern is to be used when the creation is a one step process while builder pattern is to be used when the creation is a multi step process.
+객체의 특성이 다수 존재할 때, 그리고 the constructor telescoping 를 피하기 위해 사용합니다. Factory pattern 과의 확실히 구분되는 점은, Factory pattern은 하나의 단계로 생성된다는 것이고 Builder pattern은 여러 단계의 과정을 거쳐 객체가 생성된다는 것 입니다.
 
 🐑 Prototype
 ------------
