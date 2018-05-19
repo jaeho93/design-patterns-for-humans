@@ -359,7 +359,7 @@ public class Pizza {
 
 이에 대한 올바른 대안은  The Builder pattern 입니다. 먼저 우리가 만들기 원하는 Burger를 준비해요.
 
-```jav
+```java
 class Burger {
 	protected int size;
 	protected boolean cheese = false;
